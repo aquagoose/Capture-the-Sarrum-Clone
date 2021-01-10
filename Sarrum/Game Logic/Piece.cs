@@ -69,10 +69,14 @@ namespace Sarrum
                         if (destY - startY == -1 && destX - startX == 0) // Checks to make sure the piece is only moving forward.
                         {
                             if (Board.GetPiece(startX, startY - 1).color == Color.Black) isLegalMove = false; // Prevents the piece from moving into any piece at all.
+                            else if (destY == 1) type = PieceType.MarzazPani;
                         }
                         // Code below checks to see if there is a black piece on the diagonal, since that is a legal move and a court has ruled it as such.
                         else if (Board.GetPiece(startX - 1, startY - 1).color == Color.Black || Board.GetPiece(startX + 1, startY - 1).color == Color.Black)
+                        {
+                            if (destY == 1) type = PieceType.MarzazPani;
                             isLegalMove = true;
+                        }
                         else isLegalMove = false;
                     }
                     else if(color == Color.Black) // Works the exact same as above.
@@ -81,9 +85,13 @@ namespace Sarrum
                         if (destY - startY == 1 && destX - startX == 0)
                         {
                             if (Board.GetPiece(startX, startY + 1).color == Color.White) isLegalMove = false;
+                            else if (destY == 8) type = PieceType.MarzazPani;
                         }
                         else if (Board.GetPiece(startX - 1, startY + 1).color == Color.White || Board.GetPiece(startX + 1, startY + 1).color == Color.White)
+                        {
+                            if (destY == 8) type = PieceType.MarzazPani;
                             isLegalMove = true;
+                        }
                         else isLegalMove = false;
                     }
                     break;

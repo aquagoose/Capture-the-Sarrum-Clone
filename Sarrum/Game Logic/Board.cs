@@ -109,8 +109,8 @@ namespace Sarrum
         public static Piece GetPiece(int x, int y)
         {
             if ((x < 1 || x > _boardSize) || (y < 1 || y > _boardSize))
-                throw new Exception("Cannot place piece outside of board range!");
-            return board[x - 1, y - 1];
+                return new Piece();
+            else return board[x - 1, y - 1];
         }
 
         /// <summary>
@@ -142,13 +142,18 @@ namespace Sarrum
             if (startX < 1 || startX > _boardSize || startY < 1 || startY > _boardSize
                 || destX < 1 || destX > _boardSize || destY < 1 || destY > _boardSize) return false; // Checks to make sure the move isn't out of the boundaries of the board.
 
-            if (GetPiece(destX, destY).type == PieceType.Sarrum) SarrumCaptured = true;
+            bool isSarrum = GetPiece(destX, destY).type == PieceType.Sarrum;
 
             if (startX == destX && startY == destY) return false; // Makes sure you don't move to your current square.
             else if (GetPiece(startX, startY).type == PieceType.None) return false; // Makes sure the current selected piece actually exists.
             else if (GetPiece(startX, startY).color != currentTurn) return false;
             else if (GetPiece(destX, destY).color == GetPiece(startX, startY).color) return false; // Makes sure you're not moving the piece to a piece of the same colour.
-            else return GetPiece(startX, startY).MovePiece(startX, startY, destX, destY); // If the above is all good, get the piece, and run it's logic.
+            else if (GetPiece(startX, startY).MovePiece(startX, startY, destX, destY))
+            {
+                if (isSarrum) SarrumCaptured = true;
+                return true;
+            }
+            else return false;
         }
     }
 }

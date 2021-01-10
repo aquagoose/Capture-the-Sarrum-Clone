@@ -3,6 +3,11 @@ A Capture the Sarrum clone written in C#.
 Based on AQA Capture the Sarrum. True to the given instructions.
 Written and adapted for C# by Ollie Robinson.
 
+**!!!THIS CODE IS FOR EDUCATIONAL && FUN PURPOSES ONLY!!!**
+I am fine with you downloading this code to play the game, learn from it, or change bits and adapt the code.
+However, you are **not** permitted to upload the code and claim it to be your own, appropriate action will be taken if discovered.
+If you adapt this code, **you must credit me** somewhere in your code, (preferably Program.cs). 
+
 ## How to play
 When you start the game, you will be asked if you want to play a sample game. A sample game is a demo version of the main game.
 Choose `y` to start the sample game, and you will be brought to a board with a few pre-set pieces on it.
